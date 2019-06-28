@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
     bool moving = false;
     int move = 10;
     public int moveTime;
-    Vector3 respawn;
+    public Vector3 respawn;
 
     // Start is called before the first frame update
     void Start()
