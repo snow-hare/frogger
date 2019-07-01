@@ -76,6 +76,7 @@ public class PlayerControl : MonoBehaviour
         {
             transform.position = respawn;
             transform.eulerAngles = new Vector3(0, 0, 0);
+            GetComponent<AudioSource>().Play();
         }
     }
 }

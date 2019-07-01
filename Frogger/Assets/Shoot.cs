@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// Bullet.cs
+// Created: 6/28/19
+// Owner: Bryce Dixon
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
