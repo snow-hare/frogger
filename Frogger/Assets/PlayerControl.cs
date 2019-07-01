@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// PlayerControl.cs
+// Created: 6/20/19
+// Owner: Ryan Steinglass
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -68,6 +72,12 @@ public class PlayerControl : MonoBehaviour
         }
         transform.position = newVel;
         transform.eulerAngles = newRot;
+
+        if (transform.position.x < -8.5 || transform.position.x > 8.5)
+        {
+            transform.position = respawn;
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
     }
 
     void OnCollisionStay(Collision collision)

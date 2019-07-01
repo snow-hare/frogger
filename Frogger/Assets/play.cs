@@ -1,13 +1,15 @@
-﻿// kill.cs
-// Created: 6/20/19
+﻿// play.cs
+// Created: 7/1/19
 // Owner: Ryan Steinglass
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class kill : MonoBehaviour
+public class play : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +22,9 @@ public class kill : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    public void Play(string scene)
     {
-        if (other.GetComponent<PlayerControl>())
-        {
-            other.transform.position = other.GetComponent<PlayerControl>().respawn;
-        }
+        Debug.Log("play");
+        SceneManager.LoadScene(scene);
     }
 }

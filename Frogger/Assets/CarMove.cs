@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// CarMove.cs
+// Created: 6/20/19
+// Owner: Ryan Steinglass
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

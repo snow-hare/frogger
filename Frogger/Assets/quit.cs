@@ -1,12 +1,12 @@
-﻿// kill.cs
-// Created: 6/20/19
+﻿// quit.cs
+// Created: 7/1/19
 // Owner: Ryan Steinglass
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class kill : MonoBehaviour
+public class quit : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -20,11 +20,8 @@ public class kill : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    public void Quit()
     {
-        if (other.GetComponent<PlayerControl>())
-        {
-            other.transform.position = other.GetComponent<PlayerControl>().respawn;
-        }
+        Application.Quit();
     }
 }
