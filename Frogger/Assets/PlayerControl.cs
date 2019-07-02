@@ -9,6 +9,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     int speed = 1;
+    int lilySpeed = 0;
     bool moving = false;
     int move = 10;
     public int moveTime;
@@ -80,7 +81,8 @@ public class PlayerControl : MonoBehaviour
         transform.position = newVel;
         if (following)
         {
-            transform.position = following.transform.position;
+            // transform.position = following.transform.position + Vector3.back * 0.01f;
+            transform.position = new Vector3(following.transform.position.x, transform.position.y, transform.position.z);
         }
         transform.eulerAngles = newRot;
 
@@ -93,23 +95,45 @@ public class PlayerControl : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, -3, transform.position.z);
         }
+
+        RaycastHit hit;
+        Vector3 start = transform.position + Vector3.back;
+        float dist = 30f;
+        Vector3 end = Vector3.forward * dist;
+        bool didhit = Physics.Raycast(start, end, out hit, dist, LayerMask.GetMask("WaterRaycasts"));
+        if (didhit && hit.transform.tag == "Water")
+        {
+            Die();
+        }
+        CheckLily();
+    }
+
+    public void Die()
+    {
+        transform.position = respawn;
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        following = null;
+        GetComponent<AudioSource>().Play();
     }
 
     void OnCollisionStay(Collision collision)
     {
         if (collision.transform.GetComponent<CarMove>())
         {
-            transform.position = respawn;
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            GetComponent<AudioSource>().Play();
+            Die();
         }
     }
 
-    void OnTriggerEnter(Collider collision)
+    void CheckLily()
     {
-        if (collision.GetComponent<LilyPadMove>())
+        RaycastHit hit;
+        Vector3 start = transform.position + Vector3.back;
+        float dist = 30f;
+        Vector3 end = Vector3.forward * dist;
+        bool didhit = Physics.Raycast(start, end, out hit, dist, LayerMask.GetMask("WaterRaycasts"));
+        if (didhit && hit.transform.tag == "Lily")
         {
-            following = collision.gameObject;
+            following = hit.transform.gameObject;
         }
     }
 }
