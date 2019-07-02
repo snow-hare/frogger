@@ -20,11 +20,12 @@ public class kill : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<PlayerControl>())
         {
-            other.transform.position = other.GetComponent<PlayerControl>().respawn;
+            if (!other.GetComponent<PlayerControl>().following)
+                other.transform.position = other.GetComponent<PlayerControl>().respawn;
         }
     }
 }
